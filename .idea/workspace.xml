@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cb41d8da-745f-4474-a49d-4af40cb1fe01" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/bash/performance_run_new.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bash/performance_run_new.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/container_cpu_usage_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/container_cpu_usage_time.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/container_memory_page_fault_count_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/container_memory_page_fault_count_stats.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/container_uptime_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/container_uptime_stats.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +40,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1568024158200</updated>
-      <workItem from="1568024162469" duration="1007000" />
+      <workItem from="1568024162469" duration="1672000" />
     </task>
     <servers />
   </component>

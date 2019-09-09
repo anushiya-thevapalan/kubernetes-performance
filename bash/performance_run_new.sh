@@ -1,8 +1,8 @@
 backend_host_ip=35.193.107.31
 
 run_time_length_seconds=900
-warm_up_time_seconds=300 # check for min vs sec
-warm_up_time_minutes=0
+#warm_up_time_seconds=300 # check for min vs sec
+warm_up_time_minutes=5
 actual_run_time_seconds=600
 
 jmeter_jtl_location=/home/kubernetes-performance/jtls
