@@ -13,9 +13,9 @@ from container_memory_bytes_used_stats import *
 from container_memory_page_fault_count_stats import *
 from container_uptime_stats import *
 
-# start_time = sys.argv[1]
-# end_time = sys.argv[2]
-# size = sys.argv[3]
+start_time = sys.argv[1]
+end_time = sys.argv[2]
+size = sys.argv[3]
 
 
 def query_metrics(start_time, end_time, size):
@@ -59,9 +59,9 @@ def query_metrics(start_time, end_time, size):
     except Exception as e:
         print(e)
 
-start_time = '2019-09-09T04:42:45.615723941'
-end_time = '2019-09-09T04:42:45.615723941'
-size = "521"
+#start_time = '2019-09-09T04:42:45.615723941'
+#end_time = '2019-09-09T04:42:45.615723941'
+#size = "521"
 # schedule.every(1).minute.do(query_metrics(start_time, end_time))
 query_metrics(start_time, end_time, size)
 
