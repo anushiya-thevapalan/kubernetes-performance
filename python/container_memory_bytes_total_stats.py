@@ -1,15 +1,15 @@
 import json
 import objectpath
-def get_container_memory_bytes_total(filename):
+def get_container_memory_bytes_total(filename, size):
     with open(filename) as datafile:
         data = json.load(datafile)
 
-    file = open("container_memory_bytes_total.csv", "w+")
+    file = open("container_memory_bytes_total_"+size+".csv", "w+")
 
     header = ["pod_id", "cluster_name", "container_name", "instance_id", "startTime","doubleValue"]
     file.write(",".join(string for string in header))
     file.write("\n")
-    required_pod_id = "365dfe8b-cb14-11e9-ab1d-42010a800216"
+    required_pod_id = "ddfc5575-d1ee-11e9-a58a-42010a8000c0"
 
     time_series = data.get("timeSeries")
     for metrics in time_series:

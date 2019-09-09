@@ -14,7 +14,7 @@ jmeter_jmx_file_root=/home/kubernetes-performance/jmx
 jmeter_jtl_splitter_jar_file=/home/kubernetes-performance/jar/jtl-splitter-0.3.1-SNAPSHOT.jar
 
 #new ADD
-jmeter_performance_report_python_file=/home/kubernetes-performance/python/performance_report.py
+jmeter_performance_report_python_file=/home/kubernetes-performance/python/performance-report.py
 jmeter_performance_report_output_file=/home/kubernetes-performance/results.csv
 
 server_performance_report_generation_python_file=/home/kubernetes-performance/python/collect-metrics.py
@@ -70,7 +70,7 @@ do
 		done
 	done
 	end_time=$(date +%Y-%m-%dT%H:%M:%S.%N)
-	echo "end time : "${start_time}
+	echo "end time : "${end_time}
 
 	echo "Collecting server metrics"
 
