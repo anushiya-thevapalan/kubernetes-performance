@@ -50,8 +50,6 @@ do
                     		mkdir -p $jtl_report_location
 
 				echo "starting jmeter"
-				start_time=$(date +%Y-%m-%dT%H:%M:%S.%N)
-				echo "start time : "${start_time}
 
 				jmeter  -Jgroup1.host=${backend_host_ip}  -Jgroup1.port=80 -Jgroup1.threads=$u -Jgroup1.seconds=${run_time_length_seconds} -Jgroup1.data=${message} -Jgroup1.endpoint=${use_case} -Jgroup1.param=${param_name} -Jgroup1.timeout=${request_timeout} -n -t ${jmeter_jmx_file_root}/jmeter.jmx -l ${jtl_report_location}/results.jtl
 
