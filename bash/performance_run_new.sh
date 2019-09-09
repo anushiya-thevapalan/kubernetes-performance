@@ -1,9 +1,9 @@
 backend_host_ip=35.193.107.31
 
-run_time_length_seconds=300
-warm_up_time_seconds=0 # check for min vs sec
+run_time_length_seconds=900
+warm_up_time_seconds=300 # check for min vs sec
 warm_up_time_minutes=0
-actual_run_time_seconds=300
+actual_run_time_seconds=600
 
 jmeter_jtl_location=/home/kubernetes-performance/jtls
 jmeter_jmx_file_root=/home/kubernetes-performance/jmx
@@ -23,7 +23,7 @@ rm -r ${jmeter_jtl_location}/
 
 mkdir -p ${jmeter_jtl_location}/
 
-concurrent_users=(100 5 50)
+concurrent_users=(1 10 50 100 500)
 heap_sizes=(100m)
 message_sizes=(521 100003)
 garbage_collectors=(UseParallelGC)
@@ -56,21 +56,24 @@ do
 
 				jtl_file=${jtl_report_location}/results.jtl
 
-				echo "Splitting JTL"
+				#echo "Splitting JTL"
 
-                    		java -jar ${jmeter_jtl_splitter_jar_file} -f $jtl_file -t ${warm_up_time_minutes}
+                    		#java -jar ${jmeter_jtl_splitter_jar_file} -f $jtl_file -t ${warm_up_time_minutes}
 
-                    		jtl_file_measurement_for_this=${jtl_report_location}/results-measurement.jtl
+                    		#jtl_file_measurement_for_this=${jtl_report_location}/results-measurement.jtl
 
 				echo "Adding data to CSV file"
 
-                    		python3 ${jmeter_performance_report_python_file} ${jmeter_performance_report_output_file} ${jtl_file_measurement_for_this} ${actual_run_time_seconds} ${use_case} ${heap} ${u} ${gc} ${size} 
+                    		python3 ${jmeter_performance_report_python_file} ${jmeter_performance_report_output_file} ${jtl_file} ${actual_run_time_seconds} ${use_case} ${heap} ${u} ${gc} ${size} 
 
 			done
 		done
 	done
 	end_time=$(date +%Y-%m-%dT%H:%M:%S.%N)
 	echo "end time : "${end_time}
+	
+	echo "sleeping for 6 minutes"
+	sleep 6m
 
 	echo "Collecting server metrics"
 

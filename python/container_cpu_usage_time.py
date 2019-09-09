@@ -1,12 +1,12 @@
 import json
-import objectpath
+#import objectpath
 def get_container_cpu_usage(filename, size):
     with open(filename) as datafile:
         data = json.load(datafile)
 
     file = open("container_cpu_usage_time_"+size+".csv", "w+")
 
-    header = ["pod_id", "cluster_name", "container_name", "instance_id", "startTime","doubleValue"]
+    header = ["pod_id", "cluster_name", "container_name", "instance_id", "startTime","endTime","doubleValue"]
     file.write(",".join(string for string in header))
     file.write("\n")
     required_pod_id = "ddfc5575-d1ee-11e9-a58a-42010a8000c0"
@@ -24,8 +24,9 @@ def get_container_cpu_usage(filename, size):
             points = metrics.get("points")
             for point in points:
                 startTime = point.get("interval").get("startTime")
+                endTime = point.get("interval").get("endTime")
                 doubleValue = point.get("value").get("doubleValue")
-                data = [pod_id,cluster_name,container_name, instance_id, str(startTime), str(doubleValue)]
+                data = [pod_id,cluster_name,container_name, instance_id, str(startTime), str(endTime), str(doubleValue)]
                 data = ",".join(string for string in data)
                 file.write(data)
                 file.write("\n")

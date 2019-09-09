@@ -24,8 +24,9 @@ def get_container_uptime(filename, size):
             points = metrics.get("points")
             for point in points:
                 startTime = point.get("interval").get("startTime")
+                endTime = point.get("interval").get("endTime")
                 int64Value = point.get("value").get("int64Value")
-                data = [pod_id,cluster_name,container_name, instance_id, str(startTime), str(int64Value)]
+                data = [pod_id,cluster_name,container_name, instance_id, str(startTime), str(endTime), str(int64Value)]
                 data = ",".join(string for string in data)
                 file.write(data)
                 file.write("\n")

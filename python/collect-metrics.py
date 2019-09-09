@@ -31,7 +31,7 @@ def query_metrics(start_time, end_time, size):
         container_metrics_list = ["container/cpu/usage_time", "container/cpu/utilization", "container/memory/bytes_total",
                         "container/memory/bytes_used", "container/memory/page_fault_count", "container/uptime"]
         headers = {
-            'Authorization': 'Bearer ya29.Glt-B_gGjIuYhMjWn9ci-vl9CBubtWsGCVQ6Hk0wJHLcngZXak9hFd93soAKSt9Zt40ShJTN0zpiR6hzFN3Fy4gebsGOIzZFUQ2X0DWKJf8wDk9g-5m4p7vjgjy4'}
+            'Authorization': 'Bearer ya29.Glt-B90SSdzGrloQmUYE5g2nlrM-WQ0H0oW2x5d2_m0A9v6BbN_kxpaZ-2dLM8d19qSQF1egzBgPrITOkpBr3eJ-jTPKHSqRhR-PfIPji5Xvb1WEN6qxUUmpitO7'}
 
         for metrics in container_metrics_list:
             # file = open(str(time.time()), "a")
