@@ -43,11 +43,11 @@ do
 			do
 		   		total_users=$(($u))
 
-		    		jtl_report_location=${jmeter_jtl_location}/${use_case}/${heap}_Heap_${total_users}_Users_${gc}_collector_${size}_size
+		    	jtl_report_location=${jmeter_jtl_location}/${use_case}/${heap}_Heap_${total_users}_Users_${gc}_collector_${size}_size
 				
 				echo "Report location is ${jtl_report_location}"
 
-                    		mkdir -p $jtl_report_location
+                mkdir -p $jtl_report_location
 
 				echo "starting jmeter"
 
@@ -58,13 +58,13 @@ do
 
 				echo "Splitting JTL"
 
-                    		java -jar ${jmeter_jtl_splitter_jar_file} -f $jtl_file -t ${warm_up_time_minutes}
+                java -jar ${jmeter_jtl_splitter_jar_file} -f $jtl_file -t ${warm_up_time_minutes}
 
-                    		jtl_file_measurement_for_this=${jtl_report_location}/results-measurement.jtl
+                jtl_file_measurement_for_this=${jtl_report_location}/results-measurement.jtl
 
 				echo "Adding data to CSV file"
 
-                    		python3 ${jmeter_performance_report_python_file} ${jmeter_performance_report_output_file} ${jtl_file_measurement_for_this} ${actual_run_time_seconds} ${use_case} ${heap} ${u} ${gc} ${size} 
+                python3 ${jmeter_performance_report_python_file} ${jmeter_performance_report_output_file} ${jtl_file_measurement_for_this} ${actual_run_time_seconds} ${use_case} ${heap} ${u} ${gc} ${size} 
 
 			done
 		done
