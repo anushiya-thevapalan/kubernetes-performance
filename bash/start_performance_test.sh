@@ -1,3 +1,5 @@
+#!/bin/bash
+
 backend_host_ip=35.193.107.31
 
 run_time_length_seconds=900
@@ -39,34 +41,34 @@ do
 	do
 		for u in ${concurrent_users[@]}
 	    	do
-			for gc in ${garbage_collectors[@]}
-			do
-		   		total_users=$(($u))
+				for gc in ${garbage_collectors[@]}
+				do
+					total_users=$(($u))
 
-		    	jtl_report_location=${jmeter_jtl_location}/${use_case}/${heap}_Heap_${total_users}_Users_${gc}_collector_${size}_size
-				
-				echo "Report location is ${jtl_report_location}"
+					jtl_report_location=${jmeter_jtl_location}/${use_case}/${heap}_Heap_${total_users}_Users_${gc}_collector_${size}_size
+					
+					echo "Report location is ${jtl_report_location}"
 
-                mkdir -p $jtl_report_location
+					mkdir -p $jtl_report_location
 
-				echo "starting jmeter"
+					echo "starting jmeter"
 
-				jmeter  -Jgroup1.host=${backend_host_ip}  -Jgroup1.port=80 -Jgroup1.threads=$u -Jgroup1.seconds=${run_time_length_seconds} -Jgroup1.data=${message} -Jgroup1.endpoint=${use_case} -Jgroup1.param=${param_name} -Jgroup1.timeout=${request_timeout} -n -t ${jmeter_jmx_file_root}/jmeter.jmx -l ${jtl_report_location}/results.jtl
+					jmeter  -Jgroup1.host=${backend_host_ip}  -Jgroup1.port=80 -Jgroup1.threads=$u -Jgroup1.seconds=${run_time_length_seconds} -Jgroup1.data=${message} -Jgroup1.endpoint=${use_case} -Jgroup1.param=${param_name} -Jgroup1.timeout=${request_timeout} -n -t ${jmeter_jmx_file_root}/jmeter.jmx -l ${jtl_report_location}/results.jtl
 
 
-				jtl_file=${jtl_report_location}/results.jtl
+					jtl_file=${jtl_report_location}/results.jtl
 
-				echo "Splitting JTL"
+					echo "Splitting JTL"
 
-                java -jar ${jmeter_jtl_splitter_jar_file} -f $jtl_file -t ${warm_up_time_minutes}
+					java -jar ${jmeter_jtl_splitter_jar_file} -f $jtl_file -t ${warm_up_time_minutes}
 
-                jtl_file_measurement_for_this=${jtl_report_location}/results-measurement.jtl
+					jtl_file_measurement_for_this=${jtl_report_location}/results-measurement.jtl
 
-				echo "Adding data to CSV file"
+					echo "Adding data to CSV file"
 
-                python3 ${jmeter_performance_report_python_file} ${jmeter_performance_report_output_file} ${jtl_file_measurement_for_this} ${actual_run_time_seconds} ${use_case} ${heap} ${u} ${gc} ${size} 
+					python ${jmeter_performance_report_python_file} ${jmeter_performance_report_output_file} ${jtl_file_measurement_for_this} ${actual_run_time_seconds} ${use_case} ${heap} ${u} ${gc} ${size} 
 
-			done
+				done
 		done
 	done
 	end_time=$(date +%Y-%m-%dT%H:%M:%S.%N)
@@ -77,7 +79,7 @@ do
 
 	echo "Collecting server metrics"
 
-	python3 ${server_performance_report_generation_python_file} ${start_time} ${end_time} ${size}
+	python ${server_performance_report_generation_python_file} ${start_time} ${end_time} ${size}
 done
 				
 			
