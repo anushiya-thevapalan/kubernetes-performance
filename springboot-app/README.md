@@ -1,7 +1,8 @@
 The jar file in this directory is built using the Spring-boot application from the link below
+
 https://github.com/anushiya-thevapalan/springboot-test/
 
-If you wish to make modifications and rebuild the application
+If you wish to make modifications and/or rebuild the application
 
 1. Clone the repository
 
