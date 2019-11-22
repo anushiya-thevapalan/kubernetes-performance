@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: perf-test
+  labels:
+    app: perf-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: perf-test
+  template:
+    metadata:
+      labels:
+        app: perf-test
+    spec:
+      containers:
+      - name: jmeter
+        image: anushiya/k8-performance-test:v1
