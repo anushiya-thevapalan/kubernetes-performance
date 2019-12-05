@@ -7,7 +7,7 @@ run_time_length_seconds=900
 warm_up_time_minutes=5
 actual_run_time_seconds=600
 
-jmeter_jtl_location=/home/kubernetes-performance/jtls
+jmeter_jtl_location=/home/kubernetes-performance/results/jtls
 jmeter_jmx_file_root=/home/kubernetes-performance/jmx
 
 #jmeter_jtl_location=/home/anushiyat/jtls
@@ -17,7 +17,7 @@ jmeter_jtl_splitter_jar_file=/home/kubernetes-performance/jar/jtl-splitter-0.3.1
 
 #new ADD
 jmeter_performance_report_python_file=/home/kubernetes-performance/python/performance-report.py
-jmeter_performance_report_output_file=/home/kubernetes-performance/results.csv
+jmeter_performance_report_output_file=/home/kubernetes-performance/results/results.csv
 
 server_performance_report_generation_python_file=/home/kubernetes-performance/python/collect-metrics.py
 
