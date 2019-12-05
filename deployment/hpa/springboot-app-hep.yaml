@@ -1,0 +1,16 @@
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: springboot-app-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v2beta2
+    kind: Deployment
+    name: springboot-app
+  minReplicas: 1
+  maxReplicas: 20
+  metrics:
+    - resource:
+        name: cpu
+        targetAverageUtilization: 50
+      type: Resource
