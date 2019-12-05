@@ -1,19 +1,21 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
   name: perf-test
-  labels:
-    app: perf-test
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: perf-test
   template:
-    metadata:
-      labels:
-        app: perf-test
     spec:
       containers:
-      - name: jmeter
+      - name: perf-test
         image: anushiya/k8-performance-test:v1
+        imagePullPolicy: Always
+        command: ["bash", "start_performance_test.sh"]
+        volumeMounts:
+        - mountPath: "/home/jmeter/results"
+          name: pv-storage
+      restartPolicy: Never
+      volumes:
+      - name: pv-storage
+        persistentVolumeClaim:
+          claimName: pv-claim
+  backoffLimit: 4
